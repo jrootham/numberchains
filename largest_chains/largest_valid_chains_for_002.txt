@@ -1,0 +1,4 @@
+1, 2
+2, 1
+Total valid chains = 2
+max_value = 2 chain_length = 2
