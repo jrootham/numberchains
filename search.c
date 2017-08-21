@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <memory.h>
 
-#define N 32
+#define N 35
 
 static int consec[N+1][N+1];
 static int lengths[N+1];

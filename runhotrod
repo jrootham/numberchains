@@ -1,0 +1,5 @@
+echo "#define N " $1 > n.h
+
+c99 hotrod.c
+
+time ./a.out
