@@ -8,11 +8,13 @@ static int consec[N+1][N+1];
 static int lengths[N+1];
 typedef int BIT;
 static BIT used[N+1];
+static BIT rightused[N+1];
 typedef int VAL;
 static int rightpos;
 static int leftpos;
 static VAL result[2 * N + 1];
-/* static int index[N+1]; */
+static VAL value;
+static int index[2 * N + 1];
 
 bool
 isPrime(unsigned int n) {
@@ -43,10 +45,15 @@ gengraph() {
 
 void 
 gensolutions() {
-	used[1] = 1;
 	result[N] = 1;
 	leftpos = N;
 	rightpos = N;
+	index[rightpos + 1] = 0;
+	value = consec[1][0];
+	result[rightpos + 1] = value;
+	used[value] = 1;
+	rightused[value] = 1;
+
 
 
 }

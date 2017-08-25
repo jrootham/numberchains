@@ -1,0 +1,11 @@
+rm -f search/time
+i=$1
+end=$2
+while [ $i -le $end ];
+do
+    echo "N = $i" >> search/time
+    echo "#define N " $i > n.h
+    c99 search.c
+    /usr/bin/time -f "%U" --append -o search/time  ./a.out
+    i=$(($i+1))
+done

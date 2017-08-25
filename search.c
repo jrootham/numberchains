@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <memory.h>
 
-#define N 35
+#include "n.h"
 
 static int consec[N+1][N+1];
 static int lengths[N+1];
@@ -27,40 +27,43 @@ gengraph() {
   }
 }
 
-typedef int BIT;
+typedef unsigned char BIT;
 static BIT used[N+1];
 
-typedef int VAL;
+typedef unsigned char VAL;
 /* static int curpos; */
 static VAL result[N+1];
 /* static int index[N+1]; */
 
-void printsoln(len) {
-  printf("[%d]", len);
-  for (int i = 0; i < len; i++) {
-    printf(" %d", result[i]);
+static FILE* file;
+static char fileName[100];
+
+void printsoln(int len) {
+  fprintf(file, "%d", result[0]);
+  for (int i = 1; i < len; i++) {
+    fprintf(file, ",%d", result[i]);
   }
-  printf("\n");
+  fprintf(file, "\n");
 }
 
 static int nlongest = 0;
 
 void
-iterate(pos) {
-  int havelegal = 0;
+iterate(int pos) {
   int val = result[pos];
   for (int i = 0; i < lengths[val]; i++) {
     int nextval = consec[val][i];
     if (used[nextval]) continue;
-    havelegal = 1;
     result[pos + 1] = nextval;
     used[nextval] = 1;
     iterate(pos + 1);
     used[nextval] = 0;
   }
-  /* if (!havelegal && pos + 1 == 9) { */
-  if (pos >= nlongest) {
+  if (pos > nlongest) {
     nlongest = pos;
+    freopen(fileName, "w", file);
+  }
+  if (pos >= nlongest) {
     printsoln(pos + 1);
   }
 }
@@ -79,32 +82,11 @@ gensolutions() {
 
 int
 main() {
+  sprintf(fileName, "search/csv/maxfor%d.csv", N);
+  file = fopen(fileName, "w");
   memset(used, 0, sizeof(used));
   gengraph();
   gensolutions();
-
+  fclose(file);
   return 0;
 }
-
-
-#if 0
-void iterate() {
-  int val = result[curpos];
-
-  // step forward
-  int nextval = consec[val][index[curpos]];
-  if (!used[nextval]) {
-    result[curpos + 1] = nextval;
-    index[curpos + 1] = i;
-    used[nextval] = 1;
-  }
-  index[curpos]++;
-
-  // step back
-  while (index[curpos] == len[val]) {
-    used[val] = 0;
-    curpos--;
-    val = result[curpos];
-  }
-}
-#endif
