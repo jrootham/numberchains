@@ -3,6 +3,7 @@ i=$1
 end=$2
 while [ $i -le $end ];
 do
+	echo $i
     echo "N = $i" >> search/time
     echo "#define N " $i > n.h
     c99 search.c
