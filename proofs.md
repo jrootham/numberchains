@@ -19,25 +19,31 @@ It must be adjacent to 1 which is unique by definition.
 There are no primes greater than N / 2 in a maximal chain.
 Any such prime could be replaced by a prime P less than N / 2 followed by P * 2, thus producing a longer chain.
 
-## Symmetry
+## Location of 1
 
 ### Lemma 1
 
 There is a 1 in a longest chain
 If there was no 1 it could be added to either end.
 
-### Lemma 2
+### Proof
 
 The longest chain does not start or end with a 1
 If it did a large prime could be added next to it, producing a longer chain.
+
+## Only Primes Next to One (Conjecture)
+
+There is a version of a maximal chain for any N that includes a sequence p1 1 p2 where p1 and p2 are primes.
+Handwaving, a maximal sequence may be reordered in the vicinty of 1 to make the closest primes adjacent without shrinking the sequence.  Further p1 and p2 can be between N/3 and N/2, and are the only primes in this range in a maximal sequence.
+
+# Failed Proofs
+
+## Symmetry
 
 ### Proof
 
 For any maximal chain containing the sequence S1 = a 1 b there is a reversed chain containing sequence S2 = b 1 a
 Since any legal chain has a reversed version any maximal chain does as well, the reversed version of S1 is S2.
 
-## Only Primes Next to One (Conjecture)
-
-There is a version of a maximal chain for any N that includes a sequence p1 1 p2 where p1 and p2 are primes.
-Handwaving, a maximal sequence may be reordered in the vicinty of 1 to make the closest primes adjacent without shrinking the sequence.
+There are counterexamples
 
