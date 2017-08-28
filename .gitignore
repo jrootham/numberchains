@@ -51,5 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# python
+__pycache__/
+
 # Generated files
 n.h
